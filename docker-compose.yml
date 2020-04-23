@@ -1,25 +1,18 @@
-version: '3.4'
-
+version: '2.2'
 services:
-  apm.tests:
-    image: ${DOCKER_REGISTRY-}apm
-    build:
-      context: .
-      dockerfile: apm.tests/Dockerfile
-    environment:
-      ELASTIC_APM_SERVICE_NAME: apm-tests
-      ELASTIC_APM_SERVER_URLS: http://apm-server:8200
-      ELASTIC_APM_SECRET_TOKEN:
-
   apm-server:
     image: docker.elastic.co/apm/apm-server:7.6.2
     depends_on:
-      - elasticsearch
-      - kibana
+      elasticsearch:
+        condition: service_healthy
+      kibana:
+        condition: service_healthy
     cap_add: ["CHOWN", "DAC_OVERRIDE", "SETGID", "SETUID"]
     cap_drop: ["ALL"]
     ports:
     - 8200:8200
+    networks:
+    - elastic
     command: >
        apm-server -e
          -E apm-server.rum.enabled=true
@@ -49,6 +42,8 @@ services:
     - esdata:/usr/share/elasticsearch/data
     ports:
     - 9200:9200
+    networks:
+    - elastic
     healthcheck:
       interval: 20s
       retries: 10
@@ -57,12 +52,15 @@ services:
   kibana:
     image: docker.elastic.co/kibana/kibana:7.6.2
     depends_on:
-      - elasticsearch
+      elasticsearch:
+        condition: service_healthy
     environment:
       ELASTICSEARCH_URL: http://elasticsearch:9200
       ELASTICSEARCH_HOSTS: http://elasticsearch:9200
     ports:
     - 5601:5601
+    networks:
+    - elastic
     healthcheck:
       interval: 10s
       retries: 20
@@ -71,3 +69,7 @@ services:
 volumes:
   esdata:
     driver: local
+
+networks:
+  elastic:
+    driver: bridge

@@ -1,0 +1,23 @@
+
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "apm.tests", "apm.tests\apm.tests.csproj", "{87ADC2B5-DC75-480F-8886-1166876D429B}"
+EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{288A1AD9-340A-4B4A-9A26-A47D724EF228}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{87ADC2B5-DC75-480F-8886-1166876D429B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{87ADC2B5-DC75-480F-8886-1166876D429B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{87ADC2B5-DC75-480F-8886-1166876D429B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{87ADC2B5-DC75-480F-8886-1166876D429B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{288A1AD9-340A-4B4A-9A26-A47D724EF228}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{288A1AD9-340A-4B4A-9A26-A47D724EF228}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{288A1AD9-340A-4B4A-9A26-A47D724EF228}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{288A1AD9-340A-4B4A-9A26-A47D724EF228}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
