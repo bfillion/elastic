@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  apm.tests:
+    image: ${DOCKER_REGISTRY-}apm
+    build:
+      context: .
+      dockerfile: apm.tests/Dockerfile
